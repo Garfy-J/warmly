@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "/home/claude/warmly/index.html"
+        ],
+        "createdAt": "2026-11-16T04:26:23.046Z",
+        "reason": "Garfy's reference images (Cool Cat's Club, pet adoption, recipe app) all use cream paper; palette pairs it with cobalt and tomato deliberately"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "/home/claude/warmly-repo/public/index.html"
+        ],
+        "createdAt": "2026-11-16T04:26:23.054Z",
+        "reason": "Same file as warmly/index.html; cream follows Garfy's reference images"
+      }
+    ]
+  }
+}

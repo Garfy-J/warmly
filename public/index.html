@@ -4,11 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f4ede1">
-<title>Warmly — screen candidates and reply kindly</title>
-<meta name="description" content="Free tool for HR: match CVs to your JD, spot candidates with real potential, and send every applicant a warm, personal reply. Runs in your browser, no sign-up.">
-<meta property="og:title" content="Warmly: screen candidates and reply kindly">
-<meta property="og:description" content="Match CVs to your JD and draft a warm reply for every applicant. Free, no sign-up, CVs stay on your device.">
+<title>Warmly: Free CV Screening and Candidate Reply Tool for HR (No Sign-up)</title>
+<meta name="description" content="Warmly is a free CV screening tool for HR and recruiters. Match resumes to a job description, spot candidates with potential, and send every applicant a warm, personal reply, including kind rejection emails. English and Chinese. Runs in your browser, no sign-up.">
+<link rel="canonical" href="https://warmly.garfy.workers.dev/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:site_name" content="Warmly">
+<meta property="og:title" content="Warmly: screen CVs and reply to every candidate kindly">
+<meta property="og:description" content="Free CV screening and candidate reply tool for HR. Match resumes to your JD and draft a warm reply for every applicant. No sign-up; CVs stay on your device.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://warmly.garfy.workers.dev/">
+<meta property="og:image" content="https://warmly.garfy.workers.dev/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Warmly: screen CVs and reply to every candidate kindly">
+<meta name="twitter:description" content="Free CV screening and candidate reply tool for HR. No sign-up; CVs stay on your device.">
+<meta name="twitter:image" content="https://warmly.garfy.workers.dev/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","@id":"https://warmly.garfy.workers.dev/#app","name":"Warmly","alternateName":"Warmly CV screening and candidate reply tool","url":"https://warmly.garfy.workers.dev/","applicationCategory":"BusinessApplication","applicationSubCategory":"Recruiting software","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","inLanguage":["en","zh-CN"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+"description":"Free web tool for HR and recruiters: match CVs and resumes to a job description requirement by requirement, flag candidates with hidden potential, and draft a personal reply for every applicant (interview invite, keep warm or kind rejection) in English or Chinese. Runs in the browser; CVs are not uploaded.",
+"featureList":["Match CVs to a job description requirement by requirement, with evidence from the CV","Read PDF, Word (.docx) and text CVs","Flag hidden potential: promotions, built from zero, team leadership, quantified results","Draft interview invitations, keep-warm notes and kind rejection emails","Warm, friendly or formal tone","English and Simplified Chinese replies","Fair review mode hides candidate names","Open each reply in Gmail, Outlook or your mail app with one tap, already addressed","No sign-up; CVs stay on your device"],
+"creator":{"@type":"Person","name":"Garfield Wang"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is Warmly?","acceptedAnswer":{"@type":"Answer","text":"Warmly is a free web tool that helps HR teams and recruiters screen CVs against a job description and reply to every applicant with a warm, personal message, including kind rejection emails."}},
+{"@type":"Question","name":"Is Warmly free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Warmly is free to use and needs no sign-up or account."}},
+{"@type":"Question","name":"Are CVs uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. CVs are read and matched inside your browser and are not uploaded or stored. Closing the page clears them."}},
+{"@type":"Question","name":"How does Warmly match a CV to a job description?","acceptedAnswer":{"@type":"Answer","text":"It splits the job description into requirements and checks each one against the CV using keywords, synonyms and years of experience, then shows the CV line it found as evidence. It is a rule-based first pass; you make the final decision."}},
+{"@type":"Question","name":"Can Warmly write rejection emails to candidates?","acceptedAnswer":{"@type":"Answer","text":"Yes. For each candidate it drafts an interview invitation, a keep-warm note or a kind rejection that mentions something specific from their CV, in a warm, friendly or formal tone."}},
+{"@type":"Question","name":"Does Warmly work in Chinese?","acceptedAnswer":{"@type":"Answer","text":"Yes. It reads Chinese and English CVs and job descriptions and drafts replies in English or Simplified Chinese."}},
+{"@type":"Question","name":"Can I send replies from my own email?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each reply opens in Gmail, Outlook or your mail app with one tap, already addressed and filled in, so it goes out from your own address. You can also copy it."}}
+]},
+{"@type":"HowTo","name":"How to screen CVs and reply to every candidate with Warmly","totalTime":"PT5M","step":[
+{"@type":"HowToStep","position":1,"name":"Add the job description","text":"Paste your JD with one requirement per line, or pick a template."},
+{"@type":"HowToStep","position":2,"name":"Add CVs","text":"Add PDF, Word or text CVs, or paste CV text."},
+{"@type":"HowToStep","position":3,"name":"Review the matches","text":"See each candidate's score, requirement-by-requirement evidence and potential."},
+{"@type":"HowToStep","position":4,"name":"Reply to everyone","text":"Pick a tone and language, then copy each reply or open it in Gmail, Outlook or your mail app."}
+]}
+]}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%231d3bb3'/%3E%3Cpath d='M16 23l-6-5.5c-2.5-2.3-.8-6.5 2.6-6.1 1.5.2 2.6 1.1 3.4 2.4.8-1.3 1.9-2.2 3.4-2.4 3.4-.4 5.1 3.8 2.6 6.1z' fill='%23f4ede1'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=Caveat:wght@500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -211,6 +244,38 @@ input:focus,textarea:focus{outline:none;border-color:var(--cobalt)}
 .confetti{position:fixed;z-index:34;width:9px;height:9px;pointer-events:none;border-radius:2px;animation:conf 1.2s ease-out forwards}
 @keyframes conf{to{transform:translate(var(--dx),var(--dy)) rotate(540deg);opacity:0}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.draw path,.draw circle,.draw rect,.draw ellipse{stroke-dashoffset:0}.fadein{opacity:1}}
+
+.faq{margin-top:22px}
+.faq h2{font-size:28px;margin:0 4px 10px}
+.faq details{background:var(--paper);border-radius:20px;padding:14px 18px;margin-bottom:8px}
+.faq summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:Gloock,serif;font-size:22px;line-height:1;color:var(--tomato);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:8px 0 2px;color:var(--soft);font-size:15px}
+.acct{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:var(--cream);margin-top:10px}
+.acct .dot{width:10px;height:10px;border-radius:50%;background:#3d8a4f;flex:none}
+.acct div{flex:1;min-width:0}
+.acct b{display:block;overflow:hidden;text-overflow:ellipsis}
+.acct small{color:var(--soft)}
+.mbtn{display:flex;align-items:center;gap:12px;width:100%;padding:13px 16px;border-radius:18px;border:1.5px solid var(--ink);background:#fff;font-weight:700;margin-top:10px;text-align:left}
+.mbtn svg{width:26px;height:26px;flex:none}
+.mbtn small{display:block;font-weight:500;color:var(--soft)}
+.fld{display:grid;grid-template-columns:62px 1fr;align-items:center;gap:8px;margin-bottom:8px}
+.fld label{font-size:13.5px;font-weight:700;color:var(--soft)}
+.fld input{padding:10px 13px;border-radius:14px;font-size:15px}
+.bulk{display:flex;align-items:center;gap:12px;background:var(--cobalt);color:var(--cream);border-radius:var(--r);padding:14px 16px;margin-bottom:14px}
+.bulk div{flex:1}
+.bulk b{font-family:Gloock,serif;font-weight:400;font-size:20px;display:block}
+.bulk small{color:#dfe3f6}
+.modal{position:fixed;inset:0;z-index:45;display:none;place-items:center;background:rgba(23,23,26,.5);padding:18px}
+.modal.on{display:grid}
+.modal .box{background:var(--cream);border-radius:28px;padding:22px 20px;max-width:440px;width:100%;max-height:85dvh;overflow:auto;animation:rise .35s var(--ease)}
+.modal h2{font-size:28px;margin-bottom:6px}
+.modal ul{list-style:none;margin:12px 0;padding:0;display:grid;gap:6px}
+.modal li{display:flex;justify-content:space-between;gap:10px;background:var(--paper);border-radius:14px;padding:10px 12px;font-size:14.5px}
+.modal li span{color:var(--soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.modal li.ok{background:var(--sage)}.modal li.err{background:var(--blush)}
 [hidden]{display:none!important}
 @media (min-width:900px){
   .wrap{max-width:1060px;padding-top:28px}
@@ -247,6 +312,16 @@ input:focus,textarea:focus{outline:none;border-color:var(--cobalt)}
         <div class="how rise"><h2>How it works</h2><span class="hand">4 easy steps</span></div>
         <div class="tiles" id="tiles"></div>
         <div class="safe rise"><svg class="art" viewBox="0 0 52 52" stroke="#17171a" stroke-width="2.4"><path d="M26 5 L44 12 V25 C44 36 36 44 26 48 C16 44 8 36 8 25 V12 Z" fill="#cfe1c4"/><path d="M18 26 L24 32 L35 20"/></svg><div><b>CVs stay on your device</b><span>Everything runs in your browser. Nothing is uploaded or stored.</span></div></div>
+        <section class="faq rise" aria-labelledby="faqH">
+          <h2 id="faqH">Questions</h2>
+          <details><summary>What is Warmly?</summary><p>Warmly is a free CV screening and candidate reply tool for HR teams and recruiters. It matches resumes to your job description and drafts a warm, personal reply for every applicant, including kind rejection emails.</p></details>
+          <details><summary>Is it really free? Do I need an account?</summary><p>Yes, it's free, and there's no sign-up. Open the page and start.</p></details>
+          <details><summary>Are CVs uploaded anywhere?</summary><p>No. CVs are read and matched inside your browser and never leave your device. Closing the page clears them.</p></details>
+          <details><summary>How does the CV to JD matching work?</summary><p>Warmly splits the JD into requirements and checks each one against the CV using keywords, synonyms and years of experience, then shows the line it found as evidence. It's a fast first pass. You make the call.</p></details>
+          <details><summary>Can it write rejection emails?</summary><p>Yes. Every candidate gets a draft: an interview invite, a keep-warm note or a kind "not this time" that mentions something specific from their CV. Pick a warm, friendly or formal tone.</p></details>
+          <details><summary>Can I send replies from my own Gmail or Outlook?</summary><p>Yes. Tap Gmail, Outlook or Mail app under any reply and it opens already addressed and filled in, so it goes out from your own address. Or copy it into any chat.</p></details>
+          <details><summary>Does it work in Chinese? 支持中文吗？</summary><p>Yes. Warmly reads Chinese and English CVs and JDs and drafts replies in English or 简体中文. 免费简历筛选与候选人回复工具：按岗位要求逐条匹配简历，并为每位候选人生成温暖得体的回复，包括婉拒邮件。</p></details>
+        </section>
       </div>
     </div>
   </section>
@@ -302,6 +377,11 @@ input:focus,textarea:focus{outline:none;border-color:var(--cobalt)}
         <div class="srow"><div><b>Default reply tone</b><p>You can still change it for each candidate.</p></div></div>
         <div class="seg" id="defTone"><button data-dt="warm" class="on">Warm</button><button data-dt="friendly">Friendly</button><button data-dt="formal">Formal</button></div>
       </div>
+      <div class="sec rise">
+        <h2>Send from your inbox</h2>
+        <p class="sub">Connect once and send replies straight from Warmly. They go out from your own address and land in your Sent folder.</p>
+        <div id="mailBox"></div>
+      </div>
     </div>
   </section>
 </div>
@@ -316,6 +396,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--cobalt)}
 <div class="scrim" id="scrim" data-act="close"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
 <div class="toast" id="toast"></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="box" id="modalBox"></div></div>
 <div class="busy" id="busy"><div><span id="busyArt"></span><b id="busyT">Reading CVs…</b></div></div>
 <script>
 /* ---------- data ---------- */
@@ -534,6 +615,7 @@ function go(v){
   document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
   if(v==='results')renderResults();
   if(v==='home')renderHome();
+  if(v==='settings'){renderMail();if(MAILCFG.google)loadScript('https://accounts.google.com/gsi/client').catch(()=>{});if(MAILCFG.microsoft)msalApp().catch(()=>{});}
   window.scrollTo({top:0,behavior:'instant'});
 }
 function renderTiles(){
@@ -562,7 +644,9 @@ function renderResults(){
   const c=k=>S.results.filter(r=>r.verdict===k).length;
   $('#rSum').innerHTML=`<span class="pill" style="background:var(--sage)">${c('interview')} interview</span><span class="pill" style="background:var(--butter)">${c('consider')} keep warm</span><span class="pill" style="background:var(--sky)">${c('decline')} kind decline</span>`;
   const L=2*Math.PI*28;
-  $('#rList').innerHTML=S.results.map((r,i)=>{
+  const pend=S.results.filter(r=>!S.done.has(r.id)&&validEmail(replyFor(r).to)).length;
+  const banner=M.provider&&pend?`<div class="bulk" style="grid-column:1/-1"><div><b>Reply to everyone at once</b><small>${pend} repl${pend===1?'y':'ies'} ready to send from ${esc(M.email)}</small></div><button class="btn c" data-act="bulk">Review &amp; send</button></div>`:(mailOn()&&!M.provider&&left?`<div class="bulk" style="grid-column:1/-1"><div><b>Send from your own inbox</b><small>Connect Gmail or Outlook to send every reply in one go</small></div><button class="btn c" data-go="settings">Connect</button></div>`:'');
+  $('#rList').innerHTML=banner+S.results.map((r,i)=>{
     const top=r.rows.filter(x=>x.st==='met').length, done=S.done.has(r.id);
     return `<button class="rc v-${r.verdict}${done?' done':''}" data-open="${r.id}" style="animation-delay:${i*.07}s">
       <h3>${esc(label(r,i))}</h3>
@@ -577,7 +661,7 @@ function countUp(el,to){const t0=performance.now();const f=t=>{const p=Math.min(
 function openSheet(id,keep){
   const r=S.results.find(x=>x.id===id); if(!r)return;
   S.open=id; S.revealed.add(id);
-  const tone=S.toneOf[id]||S.tone, lang=S.langOf[id]||r.lang, key=`${id}-${tone}-${lang}`;
+  const R=replyFor(r), tone=R.tone, lang=R.lang;
   $('#sheet').innerHTML=`
   <div class="shead"><div class="grab"></div>
     <div class="row"><h2>${esc(r.name)}</h2><button class="close" data-act="close" aria-label="Close">×</button></div>
@@ -592,13 +676,14 @@ function openSheet(id,keep){
     <div class="sec"><h2>Your reply</h2><p class="sub hand" style="font-size:20px;color:var(--tomato);margin:-2px 0 12px">written with care, ready to send</p>
       <div class="seg">${['warm','friendly','formal'].map(t=>`<button data-tone="${t}" class="${t===tone?'on':''}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div>
       <div class="seg"><button data-lang="en" class="${lang==='en'?'on':''}">English</button><button data-lang="zh" class="${lang==='zh'?'on':''}">中文</button></div>
+      <div class="fld"><label for="toIn">To</label><input type="text" id="toIn" inputmode="email" autocomplete="off" value="${esc(R.to)}" placeholder="candidate@email.com"></div>
+      <div class="fld"><label for="subIn">Subject</label><input type="text" id="subIn" value="${esc(R.subj)}"></div>
       <div class="letter"><textarea id="reply" aria-label="Reply draft"></textarea></div>
-      <div class="acts"><button class="btn b" data-act="copy">Copy reply</button><button class="btn o" data-act="redraft">Redraft</button>
-      <button class="btn t full" data-act="done">${S.done.has(id)?'Replied ✓ · tap to undo':'Mark as replied'}</button></div>
-      ${r.email?`<div class="mail">${esc(r.email)} · <a href="mailto:${esc(r.email)}?body=${encodeURIComponent(S.edits[key]??draft(r,tone,lang))}">Open in mail app</a></div>`:''}
+      ${M.provider?`<div class="acts"><button class="btn t full" data-act="send">${S.done.has(id)?'Send again':'Send from '+esc(M.email||PNAME[M.provider])}</button><button class="btn b" data-act="copy">Copy reply</button><button class="btn o" data-act="redraft">Redraft</button></div><div class="mail"><a href="#" data-act="done">${S.done.has(id)?'Replied ✓ · undo':'Replied another way? Mark as replied'}</a></div>`
+      :`<div class="acts"><button class="btn b" data-act="copy">Copy reply</button><button class="btn o" data-act="redraft">Redraft</button><button class="btn t full" data-act="done">${S.done.has(id)?'Replied ✓ · tap to undo':'Mark as replied'}</button></div><div class="mail" id="openIn">Open in ${composeLinks(R.to,R.subj,R.body)}</div>${mailOn()?'<div class="mail"><a href="#" data-go="settings">Connect Gmail or Outlook</a> to send without leaving Warmly</div>':''}`}
     </div>
   </div>`;
-  $('#reply').value=S.edits[key]??draft(r,tone,lang);
+  $('#reply').value=R.body;
   if(!keep)countUp($('#bigsc'),r.score);
   $('#scrim').classList.add('on');$('#sheet').classList.add('on');if(!keep)$('#sheet').scrollTop=0;
   document.body.style.overflow='hidden';
@@ -621,7 +706,7 @@ function run(){
   busy(true,'Reading every CV…');
   setTimeout(()=>{
     S.results=S.cvs.map(c=>({id:c.id,name:c.name,email:emailIn(c.text),lang:langOf(c.text),...screen(c.text,reqs)})).sort((a,b)=>b.score-a.score);
-    S.edits={};S.done=new Set();S.revealed=new Set();S.toneOf={};S.langOf={};
+    S.edits={};S.done=new Set();S.revealed=new Set();S.toneOf={};S.langOf={};S.toOf={};S.subjOf={};
     busy(false);renderBadge();go('results');toast('Tap a candidate to see the match and the reply');
   },1100);
 }
@@ -636,7 +721,9 @@ function demo(){
 
 /* ---------- events ---------- */
 document.addEventListener('click',async e=>{
+  if(e.target.id==='modal'){$('#modal').classList.remove('on');return;}
   const b=e.target.closest('[data-go],[data-act],[data-tpl],[data-rm],[data-open],[data-tone],[data-lang],[data-dt],#swFair');if(!b)return;
+  if(b.tagName==='A'&&b.getAttribute('href')==='#')e.preventDefault();
   if(b.dataset.go){closeSheet();go(b.dataset.go);return;}
   if(b.dataset.tpl){const t=TPL[+b.dataset.tpl];$('#roleIn').value=t.role;$('#jdIn').value=t.jd;document.querySelectorAll('#tpls .chip').forEach(c=>c.classList.toggle('on',c===b));return;}
   if(b.dataset.rm){S.cvs=S.cvs.filter(c=>c.id!==+b.dataset.rm);renderCVs();return;}
@@ -652,13 +739,35 @@ document.addEventListener('click',async e=>{
   else if(a==='paste'){const p=$('#pasteBox');p.hidden=!p.hidden;if(!p.hidden)$('#pasteIn').focus();}
   else if(a==='addPaste'){const t=$('#pasteIn').value.trim();if(t.length<30){toast('That CV looks a bit short');return;}S.cvs.push({id:++uid,text:t,file:'',name:candName(t)});$('#pasteIn').value='';$('#pasteBox').hidden=true;renderCVs();toast('CV added');}
   else if(a==='copy'){const t=$('#reply').value;try{await navigator.clipboard.writeText(t);toast('Copied. Paste it into your email or chat.');}catch(err){$('#reply').select();toast('Select all and copy the text above');}}
-  else if(a==='redraft'){const r=S.results.find(x=>x.id===S.open);const tone=S.toneOf[S.open]||S.tone,lang=S.langOf[S.open]||r.lang;delete S.edits[`${S.open}-${tone}-${lang}`];$('#reply').value=draft(r,tone,lang);}
+  else if(a==='redraft'){const r=S.results.find(x=>x.id===S.open);const tone=S.toneOf[S.open]||S.tone,lang=S.langOf[S.open]||r.lang;delete S.edits[`${S.open}-${tone}-${lang}`];$('#reply').value=draft(r,tone,lang);refreshOpenIn();}
+  else if(a==='send'){const r=S.results.find(x=>x.id===S.open),R=replyFor(r);
+    if(!validEmail(R.to)){toast("Add the candidate's email address first");$('#toIn').focus();return;}
+    b.disabled=true;b.textContent='Sending…';
+    try{await sendMail(R.to,R.subj,R.body);S.done.add(r.id);renderBadge();celebrate();toast('Sent to '+R.to);const next=S.results.find(x=>!S.done.has(x.id));closeSheet();if(next)setTimeout(()=>openSheet(next.id),700);}
+    catch(err){b.disabled=false;b.textContent='Try sending again';toast("Couldn't send. Check your connection or reconnect your inbox.");}}
+  else if(a==='mailG'||a==='mailM'){try{await(a==='mailG'?connectGoogle():connectMs());renderMail();toast(PNAME[M.provider]+' connected. You can send replies from Warmly now.');}catch(err){toast('Your inbox was not connected. Please try again.');}}
+  else if(a==='mailOff'){disconnectMail();renderMail();toast('Inbox disconnected');}
+  else if(a==='bulk'){openBulk();}
+  else if(a==='mclose'){$('#modal').classList.remove('on');renderResults();}
+  else if(a==='bulkGo'){
+    const items=[...document.querySelectorAll('#bulkList li')];b.disabled=true;b.textContent='Sending…';
+    const fresh=M.provider==='google'?googleFresh():Promise.resolve();let ok=0;
+    try{await fresh;}catch(err){b.disabled=false;b.textContent='Send all';toast('Please reconnect your inbox');return;}
+    for(const li of items){const r=S.results.find(x=>x.id===+li.dataset.bid),R=replyFor(r);
+      try{await sendMail(R.to,R.subj,R.body);S.done.add(r.id);li.className='ok';li.querySelector('span').textContent='Sent ✓';ok++;}
+      catch(err){li.className='err';li.querySelector('span').textContent="Couldn't send";}}
+    renderBadge();if(ok)celebrate();b.disabled=false;b.dataset.act='mclose';b.textContent='Done';if(b.previousElementSibling)b.previousElementSibling.hidden=true;
+    toast(ok===items.length?`All ${ok} replies sent. Lovely work ♡`:`${ok} of ${items.length} sent. Open the others to retry.`);}
   else if(a==='done'){const id=S.open;S.done.has(id)?S.done.delete(id):S.done.add(id);renderBadge();
     if(S.done.has(id)){celebrate();const next=S.results.find(r=>!S.done.has(r.id));closeSheet();if(next){toast('Sent with care. Here\'s the next one');setTimeout(()=>openSheet(next.id),700);}else toast('Everyone has a reply. Lovely work ♡');}else keepOpen();}
 });
 function keepOpen(){const sc=$('#sheet').scrollTop;openSheet(S.open,true);$('#sheet').scrollTop=sc;}
 document.addEventListener('input',e=>{
   if(e.target.id==='reply'){const r=S.results.find(x=>x.id===S.open);const tone=S.toneOf[S.open]||S.tone,lang=S.langOf[S.open]||r.lang;S.edits[`${S.open}-${tone}-${lang}`]=e.target.value;}
+  if(e.target.id==='reply'||e.target.id==='toIn'||e.target.id==='subIn'){
+    if(e.target.id==='toIn')S.toOf[S.open]=e.target.value.trim();
+    if(e.target.id==='subIn'){const r=S.results.find(x=>x.id===S.open);S.subjOf[`${S.open}-${S.langOf[S.open]||r.lang}`]=e.target.value;}
+    refreshOpenIn();}
   if(e.target.id==='sName')store.set('w_name',e.target.value);
   if(e.target.id==='sCo')store.set('w_co',e.target.value);
 });
@@ -671,12 +780,96 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&S.open!==null)close
 let y0=null;$('#sheet').addEventListener('touchstart',e=>{y0=$('#sheet').scrollTop<=0?e.touches[0].clientY:null;},{passive:true});
 $('#sheet').addEventListener('touchend',e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>110)closeSheet();y0=null;});
 
+function replyFor(r){const tone=S.toneOf[r.id]||S.tone,lang=S.langOf[r.id]||r.lang,key=`${r.id}-${tone}-${lang}`;
+  return {to:(S.toOf[r.id]??r.email)||'',subj:S.subjOf[`${r.id}-${lang}`]??subjectFor(lang),body:S.edits[key]??draft(r,tone,lang),key,tone,lang};}
+function refreshOpenIn(){const el=$('#openIn');if(!el||S.open===null)return;const R=replyFor(S.results.find(x=>x.id===S.open));el.innerHTML='Open in '+composeLinks(R.to,R.subj,R.body);}
+function openBulk(){
+  const list=S.results.filter(r=>!S.done.has(r.id)).map(r=>({r,R:replyFor(r)}));
+  const ok=list.filter(x=>validEmail(x.R.to)),miss=list.length-ok.length;
+  $('#modalBox').innerHTML=`<h2>Send ${ok.length} repl${ok.length===1?'y':'ies'}?</h2><p class="sub" style="color:var(--soft);margin:0">From ${esc(M.email||PNAME[M.provider])}. Each candidate gets their own reply, exactly as drafted.${miss?` ${miss} without an email address will be skipped.`:''}</p><ul id="bulkList">${ok.map(x=>`<li data-bid="${x.r.id}"><b>${esc(x.r.name)}</b><span>${VL[x.r.verdict]}</span></li>`).join('')}</ul><div class="acts"><button class="btn o" data-act="mclose">Cancel</button><button class="btn t" data-act="bulkGo">Send all</button></div>`;
+  $('#modal').classList.add('on');
+}
+/* ---------- send from your inbox (Gmail / Outlook) ---------- */
+// OAuth client IDs. Leave empty to hide direct sending. See README for setup.
+const MAILCFG={google:'', microsoft:''};
+S.toOf={};S.subjOf={};
+const M={provider:null,email:'',token:null,exp:0,tc:null,onToken:null,msal:null,account:null};
+const mailOn=()=>!!(MAILCFG.google||MAILCFG.microsoft);
+const PNAME={google:'Gmail',microsoft:'Outlook'};
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+const b64u=s=>b64(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+function mime(to,subj,body){
+  return ['To: '+to,'Subject: =?UTF-8?B?'+b64(subj)+'?=','MIME-Version: 1.0','Content-Type: text/plain; charset="UTF-8"','Content-Transfer-Encoding: base64','',b64(body).replace(/.{76}/g,'$&\r\n')].join('\r\n');
+}
+function subjectFor(lang){const role=S.role;return lang==='zh'?(role?`关于您申请「${role}」的回复`:'关于您的求职申请'):(role?`Your application for ${role}`:'Your application');}
+const validEmail=e=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e||'');
+
+async function connectGoogle(){
+  await loadScript('https://accounts.google.com/gsi/client');
+  return new Promise((ok,no)=>{
+    M.onToken=async t=>{
+      if(t.error){no(new Error(t.error));return;}
+      M.provider='google';M.token=t.access_token;M.exp=Date.now()+((+t.expires_in||3600)-60)*1000;
+      try{const u=await(await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+M.token}})).json();M.email=u.email||'';}catch(e){}
+      store.set('w_mail','google');ok();
+    };
+    if(!M.tc)M.tc=google.accounts.oauth2.initTokenClient({client_id:MAILCFG.google,scope:'https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/userinfo.email',callback:t=>M.onToken&&M.onToken(t),error_callback:e=>M.onToken&&M.onToken({error:e.type||'closed'})});
+    M.tc.requestAccessToken({prompt:''});
+  });
+}
+function googleFresh(){
+  if(M.token&&Date.now()<M.exp)return Promise.resolve();
+  return new Promise((ok,no)=>{const prev=M.onToken;M.onToken=t=>{M.onToken=prev;if(t.error){no(new Error(t.error));return;}M.token=t.access_token;M.exp=Date.now()+((+t.expires_in||3600)-60)*1000;ok();};M.tc.requestAccessToken({prompt:''});});
+}
+async function msalApp(){
+  await loadScript('https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js');
+  if(!M.msal){M.msal=new msal.PublicClientApplication({auth:{clientId:MAILCFG.microsoft,authority:'https://login.microsoftonline.com/common',redirectUri:location.origin+location.pathname},cache:{cacheLocation:'sessionStorage'}});if(M.msal.initialize)await M.msal.initialize();}
+  return M.msal;
+}
+async function connectMs(){
+  const app=await msalApp();
+  const res=await app.loginPopup({scopes:['Mail.Send','User.Read'],prompt:'select_account'});
+  M.account=res.account;M.provider='microsoft';M.email=res.account.username;store.set('w_mail','microsoft');
+}
+async function msToken(){
+  try{return (await M.msal.acquireTokenSilent({scopes:['Mail.Send'],account:M.account})).accessToken;}
+  catch(e){return (await M.msal.acquireTokenPopup({scopes:['Mail.Send'],account:M.account})).accessToken;}
+}
+async function sendMail(to,subj,body){
+  if(M.provider==='google'){
+    await googleFresh();
+    const r=await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send',{method:'POST',headers:{Authorization:'Bearer '+M.token,'Content-Type':'application/json'},body:JSON.stringify({raw:b64u(mime(to,subj,body))})});
+    if(!r.ok)throw new Error('Gmail '+r.status);
+  }else if(M.provider==='microsoft'){
+    const t=await msToken();
+    const r=await fetch('https://graph.microsoft.com/v1.0/me/sendMail',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'},body:JSON.stringify({message:{subject:subj,body:{contentType:'Text',content:body},toRecipients:[{emailAddress:{address:to}}]},saveToSentItems:true})});
+    if(!r.ok)throw new Error('Outlook '+r.status);
+  }else throw new Error('not connected');
+}
+function disconnectMail(){
+  try{if(M.provider==='google'&&M.token)google.accounts.oauth2.revoke(M.token,()=>{});}catch(e){}
+  Object.assign(M,{provider:null,email:'',token:null,exp:0,account:null});store.set('w_mail','');
+}
+const MAILICON=`<svg class="art" viewBox="0 0 26 26" stroke="${INK}" stroke-width="2"><rect x="3" y="6" width="20" height="14" rx="3" fill="#fbf7ef"/><path d="M4 8 L13 14 L22 8"/></svg>`;
+function renderMail(){
+  const box=$('#mailBox');if(!box)return;
+  box.closest('.sec').hidden=!mailOn();
+  if(M.provider){box.innerHTML=`<div class="acct"><span class="dot"></span><div><b>${esc(M.email||PNAME[M.provider])}</b><small>Connected · ${PNAME[M.provider]}</small></div><button class="btn o" style="min-height:40px;padding:8px 14px" data-act="mailOff">Disconnect</button></div>`;return;}
+  box.innerHTML=(MAILCFG.google?`<button class="mbtn" data-act="mailG">${MAILICON}<span>Connect Gmail<small>Gmail and Google Workspace</small></span></button>`:'')+
+    (MAILCFG.microsoft?`<button class="mbtn" data-act="mailM">${MAILICON}<span>Connect Outlook<small>Outlook, Hotmail and Microsoft 365</small></span></button>`:'')+
+    `<p class="sub" style="margin:12px 0 0;font-size:13.5px">Warmly can only send emails you approve. It can't read your inbox.</p>`;
+}
+function composeLinks(to,subj,body){
+  const e=encodeURIComponent;
+  return `<a href="https://mail.google.com/mail/?view=cm&fs=1&to=${e(to)}&su=${e(subj)}&body=${e(body)}" target="_blank" rel="noopener">Gmail</a> · <a href="https://outlook.office.com/mail/deeplink/compose?to=${e(to)}&subject=${e(subj)}&body=${e(body)}" target="_blank" rel="noopener">Outlook</a> · <a href="mailto:${e(to)}?subject=${e(subj)}&body=${e(body)}">Mail app</a>`;
+}
 /* ---------- init ---------- */
 $('#heroCat').innerHTML=HERO;$('#busyArt').innerHTML=BUSY;$('#dropArt').innerHTML=DROP;
 $('#sName').value=store.get('w_name')||'';$('#sCo').value=store.get('w_co')||'';
 const st=store.get('w_tone');if(st){S.tone=st;document.querySelectorAll('#defTone button').forEach(x=>x.classList.toggle('on',x.dataset.dt===st));}
 if(store.get('w_fair')==='0'){S.fair=false;$('#swFair').classList.remove('on');}
-renderTiles();renderTpls();renderCVs();renderHome();
+renderTiles();renderTpls();renderCVs();renderHome();renderMail();
+
 </script>
 </body>
 </html>

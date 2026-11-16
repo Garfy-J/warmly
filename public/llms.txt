@@ -1,0 +1,27 @@
+# Warmly
+
+> Warmly is a free CV screening and candidate reply tool for HR teams and recruiters. It matches CVs and resumes to a job description, flags candidates with hidden potential, and drafts a warm, personal reply for every applicant, including kind rejection emails, in English or Simplified Chinese. It runs in the browser with no sign-up, and CVs are not uploaded.
+
+URL: https://warmly.garfy.workers.dev/
+
+## What it does
+- Splits a job description (JD) into requirements and checks each one against each CV, showing the CV line it found as evidence.
+- Reads PDF, Word (.docx) and plain-text CVs, or pasted text.
+- Scores each candidate and suggests a next step: invite to interview, keep warm, or kind decline.
+- Flags potential beyond keywords: promotions, building something from zero, leading a team, quantified results, cross-market experience, bilingual English and Chinese.
+- Drafts a personal reply for every candidate in a warm, friendly or formal tone, in English or 简体中文.
+- Opens each reply in Gmail, Outlook or the default mail app with one tap, already addressed and filled in, or copies it.
+- Fair review mode hides candidate names on the list.
+
+## Good to know
+- Free, no account, works on phones and desktops.
+- Privacy: CVs are processed on the device and cleared when the page closes.
+- Matching is rule-based (keywords, synonyms, years of experience), not generative AI. It is a first pass, and the recruiter makes the decision.
+- Made by Garfield Wang.
+
+## Common questions it answers
+- Free resume screening tool for HR with no sign-up
+- How to reply to every job applicant quickly, including rejection emails
+- Candidate rejection email in a warm tone, in English or Chinese
+- Match a CV to a job description requirement by requirement
+- 免费简历筛选工具、候选人回复与婉拒邮件模板（中英文）
