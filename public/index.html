@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#151515">
+<meta name="description" content="Free tool for HR: match CVs to your JD, spot candidates with real potential, and send every applicant a warm, personal reply. Runs in your browser, no sign-up.">
+<meta property="og:title" content="Warmly: screen candidates and reply kindly">
+<meta property="og:description" content="Match CVs to your JD and draft a warm reply for every applicant. Free, no sign-up, CVs stay on your device.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 16V2a14 14 0 0 1 14 14z' fill='%23f0854f'/%3E%3Cpath d='M16 16h14a14 14 0 0 1-14 14z' fill='%23f3d55b'/%3E%3Cpath d='M16 16v14A14 14 0 0 1 2 16z' fill='%23b7d08b'/%3E%3Cpath d='M16 16H2A14 14 0 0 1 16 2z' fill='%23a9cbe9'/%3E%3C/svg%3E">
+<title>Warmly — screen candidates and reply kindly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9e9e6; --ink:#151515; --soft:#4d4d4a; --card:#fafaf8; --line:#d6d6d1;
+  --orange:#f0854f; --yellow:#f3d55b; --green:#b7d08b; --blue:#a9cbe9; --pink:#f2b2c9; --lilac:#cdc6f2;
+  --r:28px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,"Noto Sans SC",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,"Noto Sans SC",sans-serif;margin:0;letter-spacing:-.02em;line-height:1.05}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:0}
+.wrap{max-width:560px;margin:0 auto;padding:18px 16px calc(120px + env(safe-area-inset-bottom))}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:9px;font-family:"Bricolage Grotesque",Figtree,sans-serif;font-weight:800;font-size:22px}
+.brand i{width:26px;height:26px;border-radius:50%;background:conic-gradient(var(--orange) 0 25%,var(--yellow) 0 50%,var(--green) 0 75%,var(--blue) 0)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:99px;background:var(--card);font-size:13px;font-weight:600}
+.view{display:none}.view.on{display:block;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+/* home */
+.hero{background:var(--ink);color:#fff;border-radius:var(--r);padding:26px 22px 22px;position:relative;overflow:hidden}
+.hero h1{font-size:40px;font-weight:800;max-width:11ch}
+.hero p{color:#cfcfca;margin:12px 0 22px;max-width:32ch}
+.hero .dots{display:flex;gap:6px;margin-bottom:18px}
+.hero .dots i{width:14px;height:14px;border-radius:50%;display:block}
+[hidden]{display:none!important}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:99px;font-weight:700;font-size:15px;min-height:50px}
+.btn.y{background:var(--yellow);color:var(--ink)}
+.btn.w{background:#fff;color:var(--ink)}
+.btn.k{background:var(--ink);color:#fff}
+.btn.o{background:transparent;border:1.5px solid var(--ink)}
+.btn.full{width:100%}
+.btn:disabled{opacity:.4}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.tile{border-radius:var(--r);padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.tile b{font-family:"Bricolage Grotesque",Figtree,sans-serif;font-size:20px;line-height:1.1;font-weight:700}
+.tile span{font-size:13.5px;color:#2c2c2a}
+.tile .n{width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.85);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px}
+.tile.wide{grid-column:1/-1;min-height:auto;flex-direction:row;align-items:center;gap:14px}
+.resume{margin-top:12px;background:var(--card);border-radius:var(--r);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left}
+/* forms */
+.sec{background:var(--card);border-radius:var(--r);padding:20px 18px;margin-bottom:12px}
+.sec h2{font-size:24px;margin-bottom:4px}
+.sec .sub{color:var(--soft);font-size:14px;margin:0 0 14px}
+.step{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:700;margin-bottom:10px}
+label.f{display:block;font-weight:600;font-size:14px;margin:12px 0 6px}
+input[type=text],textarea{width:100%;border:1.5px solid var(--line);border-radius:18px;padding:13px 15px;background:#fff;font-size:16px}
+textarea{min-height:170px;resize:vertical;line-height:1.55}
+input:focus,textarea:focus{outline:none;border-color:var(--ink)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:9px 14px;border-radius:99px;background:#efefeb;font-size:14px;font-weight:600;white-space:nowrap}
+.chip.on{background:var(--ink);color:#fff}
+.drop{border:2px dashed #b9b9b3;border-radius:22px;padding:22px 16px;text-align:center;background:#fff;display:block;cursor:pointer}
+.drop.over{border-color:var(--ink);background:#f4f4f0}
+.drop b{display:block;font-size:16px}
+.drop span{font-size:13.5px;color:var(--soft)}
+.cvlist{margin:12px 0 0;display:flex;flex-direction:column;gap:8px}
+.cvrow{display:flex;align-items:center;gap:12px;background:#f2f2ee;border-radius:16px;padding:10px 12px}
+.cvrow .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:11px;font-weight:700;flex:none}
+.cvrow div{flex:1;min-width:0}
+.cvrow b{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cvrow small{color:var(--soft)}
+.x{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:18px;color:var(--soft)}
+.paste{margin-top:10px}
+.privacy{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--soft);padding:4px 6px 14px}
+.privacy svg{flex:none;margin-top:2px}
+/* results */
+.rhead{margin:4px 2px 14px}
+.rhead h1{font-size:30px}
+.rhead p{margin:6px 0 0;color:var(--soft)}
+.sum{display:flex;gap:8px;margin:0 0 14px;overflow-x:auto;scrollbar-width:none}
+.sum::-webkit-scrollbar{display:none}
+.list{display:grid;gap:12px}
+.rc{border-radius:var(--r);padding:18px;text-align:left;width:100%;display:grid;grid-template-columns:1fr auto;gap:6px 12px;position:relative}
+.rc h3{font-size:22px;font-weight:700}
+.rc .meta{font-size:13.5px;color:#2c2c2a}
+.rc .sc{grid-row:1/3;grid-column:2;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.65);display:grid;place-items:center;font-family:"Bricolage Grotesque",Figtree,sans-serif;font-weight:800;font-size:24px}
+.rc .tags{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tg{font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:99px;background:rgba(255,255,255,.7)}
+.tg.k{background:var(--ink);color:#fff}
+.v-interview{background:var(--green)}
+.v-consider{background:var(--yellow)}
+.v-decline{background:var(--blue)}
+.rc.done{opacity:.55}
+.empty{text-align:center;padding:40px 20px;color:var(--soft)}
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(20,20,20,.45);opacity:0;pointer-events:none;transition:.25s;z-index:20}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:92dvh;overflow:auto;background:var(--bg);border-radius:30px 30px 0 0;z-index:21;transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.8,.2,1);padding-bottom:calc(24px + env(safe-area-inset-bottom));max-width:620px;margin:0 auto;overscroll-behavior:contain}
+.sheet.on{transform:none}
+.shead{padding:12px 18px 20px;border-radius:30px 30px 0 0}
+.grab{width:44px;height:5px;border-radius:9px;background:rgba(0,0,0,.25);margin:0 auto 12px}
+.shead .row{display:flex;align-items:center;gap:12px}
+.shead h2{font-size:28px;flex:1}
+.close{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.7);display:grid;place-items:center;font-size:20px}
+.verdict{display:flex;align-items:center;gap:14px;margin-top:12px}
+.bigsc{font-family:"Bricolage Grotesque",Figtree,sans-serif;font-size:56px;font-weight:800;line-height:1}
+.verdict b{display:block;font-size:17px}
+.verdict span{font-size:14px;color:#2c2c2a}
+.sbody{padding:14px 14px 0}
+.req{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.req:first-of-type{border-top:0}
+.req .ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800}
+.met .ic{background:var(--green)}.partial .ic{background:var(--yellow)}.gap .ic{background:var(--pink)}
+.req b{font-weight:600;font-size:15px;display:block}
+.req p{margin:2px 0 0;font-size:13.5px;color:var(--soft)}
+.pot{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.pot li{background:var(--lilac);border-radius:16px;padding:11px 14px;font-size:14.5px;font-weight:500}
+.seg{display:flex;background:#e2e2dd;border-radius:99px;padding:4px;margin-bottom:10px}
+.seg button{flex:1;padding:9px 6px;border-radius:99px;font-size:14px;font-weight:600;color:var(--soft)}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.sheet textarea{min-height:300px;font-size:15.5px}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.acts .full{grid-column:1/-1}
+.mail{font-size:13.5px;color:var(--soft);margin-top:10px;text-align:center}
+.mail a{color:var(--ink);font-weight:600}
+.reveal{font-size:13px;font-weight:600;text-decoration:underline;margin-top:4px;display:inline-block}
+/* settings */
+.srow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.srow:first-of-type{border-top:0}
+.srow p{margin:2px 0 0;font-size:13.5px;color:var(--soft)}
+.sw{width:52px;height:32px;border-radius:99px;background:#c9c9c3;position:relative;flex:none;transition:.2s}
+.sw::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+.sw.on{background:var(--ink)}.sw.on::after{left:23px}
+/* nav */
+.nav{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);border-radius:99px;padding:7px;display:flex;gap:4px;z-index:10;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.nav button{width:64px;height:54px;border-radius:99px;color:#bdbdb8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11.5px;font-weight:600;position:relative}
+.nav button.on{background:#fff;color:var(--ink)}
+.nav .badge{position:absolute;top:5px;right:12px;min-width:17px;height:17px;border-radius:99px;background:var(--orange);color:var(--ink);font-size:11.5px;display:grid;place-items:center;padding:0 4px}
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:99px;font-size:14px;font-weight:600;opacity:0;transition:.25s;z-index:30;pointer-events:none;width:max-content;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.busy{position:fixed;inset:0;background:rgba(233,233,230,.9);display:none;place-items:center;z-index:40;text-align:center}
+.busy.on{display:grid}
+.spin{width:54px;height:54px;border-radius:50%;background:conic-gradient(var(--orange) 0 25%,var(--yellow) 0 50%,var(--green) 0 75%,var(--blue) 0);animation:sp 1s linear infinite;margin:0 auto 14px;mask:radial-gradient(circle,transparent 15px,#000 16px)}
+@keyframes sp{to{transform:rotate(1turn)}}
+@media (min-width:900px){
+  .wrap{max-width:1040px;padding-top:28px}
+  #v-home .grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;align-items:start}
+  #v-home .tiles{margin-top:0}
+  .list{grid-template-columns:1fr 1fr}
+  #v-setup .grid2,#v-settings .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  .sheet{bottom:20px;border-radius:30px;max-height:calc(100dvh - 40px)}
+  .hero h1{font-size:52px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brand"><i></i>Warmly</div><span class="pill" id="topPill">Free · no sign-up</span></div>
+
+  <!-- HOME -->
+  <section class="view on" id="v-home">
+    <div class="grid2">
+      <div>
+        <div class="hero"><div class="dots"><i style="background:var(--orange)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--blue)"></i></div>
+          <h1>Screen every candidate. Reply to all of them kindly.</h1>
+          <p>Match CVs to your JD, spot people with real potential, and send each applicant a warm, personal reply. On your phone, in minutes.</p>
+          <div class="cta"><button class="btn y" data-act="demo">Try the demo</button><button class="btn w" data-go="setup">Use my own JD</button></div>
+        </div>
+        <button class="resume" id="resume" hidden data-go="results"><div><b id="resumeT"></b><br><small style="color:var(--soft)" id="resumeS"></small></div><span class="btn k" style="min-height:40px;padding:8px 16px">Open</span></button>
+      </div>
+      <div class="tiles">
+        <div class="tile" style="background:var(--orange)"><span class="n">1</span><div><b>Add the JD</b><br><span>Paste it or pick a template</span></div></div>
+        <div class="tile" style="background:var(--green)"><span class="n">2</span><div><b>Drop in CVs</b><br><span>PDF, Word or text, as many as you like</span></div></div>
+        <div class="tile" style="background:var(--blue)"><span class="n">3</span><div><b>See who fits</b><br><span>Each requirement checked against the CV</span></div></div>
+        <div class="tile" style="background:var(--pink)"><span class="n">4</span><div><b>Reply in a tap</b><br><span>Warm, friendly or formal. English or 中文</span></div></div>
+        <div class="tile wide" style="background:var(--card)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span style="font-size:14px;color:var(--soft)"><b style="font-size:15px;color:var(--ink);font-family:Figtree;display:block">CVs stay on your device</b>Everything runs in your browser. Nothing is uploaded or stored.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section class="view" id="v-setup">
+    <div class="grid2">
+      <div class="sec">
+        <span class="step">1</span>
+        <h2>The role</h2>
+        <p class="sub">Paste your JD. One requirement per line works best.</p>
+        <div class="chips" id="tpls"></div>
+        <label class="f" for="roleIn">Role title</label>
+        <input type="text" id="roleIn" placeholder="e.g. Senior Brand Marketing Manager">
+        <label class="f" for="jdIn">Requirements</label>
+        <textarea id="jdIn" placeholder="6+ years in brand marketing&#10;Led campaigns on Xiaohongshu and Douyin&#10;Fluent English and Mandarin"></textarea>
+      </div>
+      <div>
+        <div class="sec">
+          <span class="step">2</span>
+          <h2>Candidates</h2>
+          <p class="sub">Add CV files, or paste CV text.</p>
+          <label class="drop" id="drop"><input type="file" id="fileIn" multiple accept=".pdf,.docx,.txt,.md" hidden><b>Tap to add CVs</b><span>PDF, Word (.docx) or text</span></label>
+          <button class="btn o full paste" data-act="paste">Paste a CV instead</button>
+          <div id="pasteBox" hidden style="margin-top:10px"><textarea id="pasteIn" placeholder="Paste the full CV text, with the candidate's name on the first line" style="min-height:140px"></textarea><button class="btn k full" style="margin-top:8px" data-act="addPaste">Add this CV</button></div>
+          <div class="cvlist" id="cvList"></div>
+        </div>
+        <div class="privacy"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>CVs are read on this device only. Closing the page clears them.</div>
+        <button class="btn k full" id="runBtn" data-act="run">Screen candidates</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="view" id="v-results">
+    <div class="rhead"><h1 id="rTitle">No results yet</h1><p id="rSub"></p></div>
+    <div class="sum" id="rSum"></div>
+    <div class="list" id="rList"></div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="view" id="v-settings">
+    <div class="grid2">
+      <div class="sec">
+        <h2>Your signature</h2>
+        <p class="sub">Used to sign every reply.</p>
+        <label class="f" for="sName">Your name</label><input type="text" id="sName" placeholder="e.g. Mei Lin">
+        <label class="f" for="sCo">Team and company</label><input type="text" id="sCo" placeholder="e.g. Talent Team, Northwind Studio">
+      </div>
+      <div class="sec">
+        <h2>How you screen</h2>
+        <div class="srow"><div><b>Fair review</b><p>Hide names until you open a candidate, so first impressions come from skills and evidence.</p></div><button class="sw on" id="swFair" aria-label="Fair review"></button></div>
+        <div class="srow"><div><b>Default reply tone</b><p>You can still change it for each candidate.</p></div></div>
+        <div class="seg" id="defTone"><button data-dt="warm" class="on">Warm</button><button data-dt="friendly">Friendly</button><button data-dt="formal">Formal</button></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<nav class="nav" id="nav">
+  <button data-go="home" class="on" aria-label="Home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</button>
+  <button data-go="setup" aria-label="New screening"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Screen</button>
+  <button data-go="results" aria-label="Results"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2 .6 3 3 3 6"/></svg>Results<span class="badge" id="badge" hidden></span></button>
+  <button data-go="settings" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</button>
+</nav>
+
+<div class="scrim" id="scrim" data-act="close"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+<div class="toast" id="toast"></div>
+<div class="busy" id="busy"><div><div class="spin"></div><b id="busyT">Reading CVs…</b></div></div>
+
+<script>
+/* ---------- data ---------- */
+const TPL = [
+  {k:'Brand Marketing Manager', role:'Senior Brand Marketing Manager', jd:'6+ years in brand or integrated marketing\nLed campaigns on Xiaohongshu, Douyin and WeChat\nManaged agency partners and budgets above ¥2M\nFluent English and Mandarin\nExperience with global or cross-border brands'},
+  {k:'Product Designer', role:'Product Designer', jd:'3+ years designing digital products\nStrong Figma and prototyping skills\nPortfolio showing end-to-end product work\nComfortable running user research and usability testing'},
+  {k:'Sales Executive', role:'Sales Executive', jd:'2+ years in B2B sales\nTrack record of hitting or beating quota\nExperience with CRM tools such as Salesforce or HubSpot\nConfident presenting to senior clients\nFluent English'},
+  {k:'新媒体运营', role:'新媒体运营专员', jd:'3年以上新媒体运营经验\n熟悉小红书、抖音平台规则\n有独立策划线上活动的经验\n优秀的文案写作能力\n具备数据分析能力'}
+];
+const DEMO = [
+ 'Chen Yuting\nchen.yuting@example.com\nBrand Manager, Lumen Skincare (2021 to now), Shanghai\n7 years in brand and integrated marketing across agency and in-house.\nLed Lumen\'s Xiaohongshu seeding programme with 400+ creators, plus Douyin and WeChat campaigns.\nOwned a ¥5M annual budget and managed three agency partners.\nTook Lumen from Tmall-only into Southeast Asia, working with the Paris HQ team.\nPromoted from Senior Executive to Brand Manager within 18 months.\nLanguages: English and Mandarin, both fluent.',
+ 'Marcus Hale\nmarcus.hale@example.com\nMarketing Lead, Field & Oak, London\n9 years in brand marketing, currently leading a team of 6.\nRan TikTok and Instagram campaigns that grew sales 40% year on year.\nManaged a £600k agency roster and annual budget.\nLaunched Field & Oak in Japan and Korea as part of our global cross-border expansion.\nNative English, conversational Mandarin (HSK 4).',
+ 'Wang Jiahui\nwang.jiahui@example.com\nContent Strategist, Ripple Media, Shanghai\n4 years in content and social marketing.\nGrew a client\'s Douyin account from 20k to 1.1M followers; ran Xiaohongshu and WeChat content calendars.\nPromoted twice in 3 years. Built the agency\'s short-video team from scratch.\nAdvised clients on campaign budgets.\nStudied in Melbourne; fluent English and Mandarin.',
+ 'Daniel Okafor\ndaniel.okafor@example.com\nUX Designer, Brightpath\n5 years designing digital products.\nDesigned onboarding for a cross-border payments app used in 12 countries.\nRuns user research and usability testing every sprint.\nLearning Mandarin.',
+ 'Li Siqi\nli.siqi@example.com\nMarketing Executive, Harbor Coffee\n2 years in marketing.\nManages Harbor Coffee\'s WeChat account; articles average 3x the category benchmark.\nFluent English and Mandarin.'
+];
+
+/* ---------- state ---------- */
+const S = {cvs:[], results:[], role:'', fair:true, tone:'warm', open:null, edits:{}, toneOf:{}, langOf:{}, done:new Set(), revealed:new Set()};
+const store = {get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let uid = 0;
+
+/* ---------- text matching ---------- */
+const STOP = new Set('a an the and or of in on for to with at by from as is are be have has experience year years strong ability skill skills working work using our we you your will plus such as other good excellent great able at least relevant related etc including e g i.e can must should well both'.split(' '));
+const SYN = [[/小红书|rednote|\bred\b(?= ?(note|app|platform))/gi,' xiaohongshu '],[/抖音/g,' douyin '],[/微信|公众号/g,' wechat '],[/英语|英文/g,' english '],[/普通话|中文|\bchinese\b|\bputonghua\b/gi,' mandarin '],[/cross[- ]border|international|overseas|global|跨境|海外|出海/gi,' global '],[/\bcrm\b/gi,' crm '],[/\bkpis?\b/gi,' target '],[/quota/gi,' target ']];
+function norm(s){let t=' '+s+' ';for(const [re,rep] of SYN)t=t.replace(re,rep);return t.toLowerCase();}
+function stem(w){
+  if(/^(led|leading|leads|leader|leadership)$/.test(w))return 'lead';
+  if(/^manag/.test(w))return 'manag';
+  if(/^design/.test(w))return 'design';
+  if(/^present/.test(w))return 'present';
+  if(w.length>5&&w.endsWith('ing'))w=w.slice(0,-3);
+  else if(w.length>4&&w.endsWith('ed'))w=w.slice(0,-2);
+  if(w.length>3&&w.endsWith('s')&&!w.endsWith('ss'))w=w.slice(0,-1);
+  return w;
+}
+const isCJK = s => /[一-鿿]/.test(s);
+function toks(s){
+  const n=norm(s), out=[];
+  for(const w of n.match(/[a-z0-9¥$£+.]+/g)||[]){const c=w.replace(/^[.+]+|[.]+$/g,'');if(c.length<2||STOP.has(c)||/^\d+$/.test(c))continue;out.push(stem(c));}
+  for(const run of n.match(/[一-鿿]+/g)||[]){if(run.length===1)continue;for(let i=0;i<run.length-1;i++){const b=run.slice(i,i+2);if(!/^(以上|经验|具备|能力|优秀|熟悉|的经|有独)$/.test(b))out.push(b);}}
+  return [...new Set(out)];
+}
+function yearsIn(s){const m=[...s.matchAll(/(\d{1,2})\s*\+?\s*(?:years?|yrs|年)/gi)].map(x=>+x[1]).filter(n=>n<40);return m.length?Math.max(...m):null;}
+function reqLines(jd){
+  let lines=jd.split(/\n|•|·(?=\s)/).map(l=>l.replace(/^\s*([-*–•]|\d+[.)、])\s*/,'').trim()).filter(Boolean);
+  const start=lines.findIndex(l=>/^(requirements|qualifications|what you('|’)ll (need|bring)|about you|who you are|任职要求|岗位要求|任职资格)/i.test(l));
+  if(start>-1){lines=lines.slice(start+1);const end=lines.findIndex(l=>/^(responsibilities|benefits|what we offer|perks|岗位职责|工作职责|福利)/i.test(l));if(end>-1)lines=lines.slice(0,end);}
+  return lines.filter(l=>!/[:：]$/.test(l)&&toks(l).length>=2).slice(0,12);
+}
+function sentences(cv){return cv.split(/\n|(?<=[.。;；])\s+/).map(s=>s.trim()).filter(s=>s.length>3);}
+
+const SIGNALS = [
+  [/promot|晋升|升职/i,'Promoted along the way, a sign of fast growth'],
+  [/from scratch|founded|co-?founded|set up the|built (the|a|an|our) |从零|创立|搭建/i,'Has built something from zero'],
+  [/(lead|leading|led|manag\w*)\s+(a\s+)?team|带领|管理.{0,6}团队/i,'Has led a team'],
+  [/\d+(\.\d+)?\s*(%|x\b|倍)|from\s+[\d.,]+\s*k?\s+to\s+[\d.,]+/i,'Talks in results, with numbers to back them up'],
+  [/japan|korea|southeast asia|europe|overseas|international|global|cross-border|海外|出海|跨境/i,'Has worked across markets'],
+  [/(mandarin|chinese|中文).*(english)|(english).*(mandarin|chinese|中文)/i,'Works in both English and Chinese']
+];
+
+function screen(cv, reqs){
+  const cvT=new Set(toks(cv)), sents=sentences(cv), cvY=yearsIn(cv);
+  const rows=reqs.map(q=>{
+    const t=toks(q), hits=t.filter(w=>cvT.has(w));
+    let ratio=t.length?hits.length/t.length:0;
+    const qY=yearsIn(q);
+    if(qY&&cvY!==null) ratio = cvY>=qY?Math.max(ratio,1):cvY>=qY-2?Math.min(Math.max(ratio,.4),.45):Math.min(ratio,.15);
+    const st=ratio>=.5?'met':ratio>=.25?'partial':'gap';
+    let best='',bs=0;for(const s of sents){const st2=new Set(toks(s));const n=t.filter(w=>st2.has(w)).length+(qY&&yearsIn(s)?1:0);if(n>bs){bs=n;best=s;}}
+    return {q,st,hits,ev:bs?best.slice(0,140):''};
+  });
+  const pts=rows.reduce((a,r)=>a+(r.st==='met'?1:r.st==='partial'?.5:0),0);
+  const score=rows.length?Math.round(pts/rows.length*100):0;
+  const pot=SIGNALS.filter(([re])=>re.test(cv)).map(([,t])=>t).slice(0,4);
+  let verdict=score>=70?'interview':score>=45?'consider':'decline', hidden=false;
+  if(verdict==='decline'&&score>=30&&pot.length>=3){verdict='consider';hidden=true;}
+  if(verdict==='consider'&&pot.length>=3)hidden=true;
+  return {rows,score,pot,verdict,hidden};
+}
+
+/* ---------- candidate parsing ---------- */
+function candName(text,fallback){
+  const first=(text.split('\n').map(s=>s.trim()).find(Boolean)||'');
+  const clean=first.replace(/^(name|姓名)\s*[:：]\s*/i,'');
+  if(clean.length&&clean.length<=40&&!/\d|@|curriculum|resume|résumé|cv\b|简历/i.test(clean))return clean;
+  return (fallback||'Candidate').replace(/\.(pdf|docx|txt|md)$/i,'').replace(/[_-]+/g,' ').replace(/\b(cv|resume|简历)\b/ig,'').trim()||'Candidate';
+}
+const emailIn = t => (t.match(/[\w.+-]+@[\w-]+\.[\w.-]+/)||[])[0]||'';
+const langOf = t => ((t.match(/[一-鿿]/g)||[]).length/Math.max(t.replace(/\s/g,'').length,1))>.25?'zh':'en';
+
+/* ---------- reply drafting ---------- */
+const PROPER=/\b(Figma|Sketch|Salesforce|HubSpot|Xiaohongshu|Douyin|WeChat|TikTok|Instagram|LinkedIn|Tmall|Excel|SQL|Python|B2B|B2C|CRM|SaaS)\b/g;
+const ZHMAP={Xiaohongshu:'小红书',Douyin:'抖音',WeChat:'微信',TikTok:'TikTok',Tmall:'天猫'};
+function phrase(q){
+  let p=q.replace(/\s*(above|over|of at least|of)?\s*[¥$£€]\s?\d[\d.,]*\s*[kKmM万]?\+?/g,'').replace(/\s+skills?$/i,'').trim();
+  for(let i=0;i<3;i++)p=p.replace(/^(led|lead|managed|managing|running|ran|built|owned|strong|proven|solid|deep|hands-on|excellent|great|comfortable|confident|experience (with|in)|track record (of|in)|knowledge of|portfolio showing|familiar with|good at)\s+/i,'');
+  if(!PROPER.test(p.split(' ')[0]))p=p.charAt(0).toLowerCase()+p.slice(1);
+  PROPER.lastIndex=0;
+  return p.replace(/[.;]$/,'');
+}
+function highlights(r,lang){
+  const met=r.rows.filter(x=>x.st==='met'&&!yearsIn(x.q)&&!/fluent|english|mandarin|英语|普通话|英文|中文/i.test(x.q));
+  if(!met.length)return '';
+  const pick=met.find(x=>(x.q.match(PROPER)||[]).length)||met[met.length-1];
+  if(isCJK(pick.q))return pick.q.replace(/^(熟悉|具备|拥有|有|优秀的|良好的)/,'').replace(/的?(经验|能力)$/,'');
+  if(lang==='zh'){const pn=[...new Set(pick.q.match(PROPER)||[])].map(w=>ZHMAP[w]||w);return pn.length?pn.join('、'):phrase(pick.q);}
+  return phrase(pick.q);
+}
+function draft(r,tone,lang){
+  const name=r.name, me=$('#sName').value.trim(), co=$('#sCo').value.trim(), role=S.role, hl=highlights(r,lang), v=r.verdict;
+  if(lang==='zh'){
+    const you=tone==='formal'?'您':'你', rl=role?`「${role}」岗位`:'这个岗位';
+    const greet={warm:`${name}，你好！`,friendly:`嗨，${name}！`,formal:`${name}，您好：`}[tone];
+    const open=(v==='decline'?`非常感谢${you}投递${rl}，也谢谢${you}为这份申请花的时间`:`非常感谢${you}投递${rl}，认真读完${you}的简历是一件很愉快的事`)+(hl?`，${you}在${hl}方面的经验尤其让我们印象深刻。`:'。');
+    const body={interview:`我们很想进一步认识${you}。下周方便约 30 分钟聊一聊吗？回复几个${you}方便的时间就好。`,
+      consider:`我们还在与其他候选人沟通，也在认真考虑${you}的申请，会在两周内给${you}明确的答复。`,
+      decline:`经过慎重考虑，我们这次决定优先推进与岗位要求更贴近的候选人。这个决定并不容易，也完全不代表${you}的能力不足。\n\n如果${you}愿意，我们希望保留${you}的资料，今后有更合适的机会会第一时间联系${you}。`}[v];
+    const close={warm:'祝一切顺利！',friendly:'有任何问题随时找我～',formal:'再次感谢您的关注。'}[tone];
+    return `${greet}\n\n${open}\n\n${body}\n\n${close}\n\n${me||'[你的名字]'}${co?'\n'+co:''}`;
+  }
+  const rl=role?`the ${role} role`:'this role';
+  const greet={warm:`Hi ${name},`,friendly:`Hey ${name}!`,formal:`Dear ${name},`}[tone];
+  let open;
+  if(tone==='formal')open=`Thank you for your application for ${role?`the ${role} position`:'this position'}.`+(hl?` Your experience with ${hl} was particularly notable.`:'');
+  else if(v==='decline')open=`Thank you so much for applying for ${rl}, and for the time you put into your application.`+(hl?` We really enjoyed reading about your experience with ${hl}.`:'');
+  else open=(tone==='friendly'?`Thanks for applying for ${rl}, we really enjoyed reading your application`:`Thank you so much for applying for ${rl}. It was a real pleasure reading your application`)+(hl?`, and your experience with ${hl} really stood out to us.`:'.');
+  const body={
+    interview: tone==='formal'?`We would like to invite you to a 30-minute conversation next week. Please let us know a few times that suit you.`:`We'd love to get to know you better. Would you be free for a 30-minute chat sometime next week? Just reply with a few times that work for you.`,
+    consider: tone==='formal'?`We are still meeting candidates and are giving your application careful consideration. We will be in touch with a decision within two weeks.`:`We're still meeting candidates for this role, and yours is an application we're giving real thought to. We'll come back to you with a clear answer within two weeks.`,
+    decline: tone==='formal'?`After careful consideration, we have decided to proceed with candidates whose experience more closely matches the requirements of this role. This was not an easy decision.\n\nWith your permission, we will keep your details on file for future opportunities.`:`After a lot of thought, we've decided to move forward with candidates whose background is a closer match for this particular role. It wasn't an easy call, and it isn't a reflection of your talent.\n\nIf you're happy for us to, we'd love to keep your details and reach out when something fits you better.`
+  }[v];
+  const close={warm:'Wishing you all the best,',friendly:'Thanks again, and speak soon!',formal:'Kind regards,'}[tone];
+  return `${greet}\n\n${open}\n\n${body}\n\n${close}\n${me||'[Your name]'}${co?'\n'+co:''}`;
+}
+
+/* ---------- file reading ---------- */
+const libs={};
+function loadScript(src){return libs[src]||(libs[src]=new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>{delete libs[src];no(new Error('load'))};document.head.appendChild(s);}));}
+async function readFile(f){
+  const ext=(f.name.split('.').pop()||'').toLowerCase();
+  if(ext==='txt'||ext==='md')return await f.text();
+  if(ext==='docx'){await loadScript('https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js');const r=await mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()});return r.value;}
+  if(ext==='pdf'){
+    await loadScript('https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js');
+    await loadScript('https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js');
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+    const pdf=await pdfjsLib.getDocument({data:new Uint8Array(await f.arrayBuffer())}).promise;let out='';
+    for(let i=1;i<=Math.min(pdf.numPages,8);i++){const pg=await pdf.getPage(i);const c=await pg.getTextContent();let lastY=null;for(const it of c.items){if(lastY!==null&&Math.abs(it.transform[5]-lastY)>4)out+='\n';else if(out&&!out.endsWith(' ')&&!out.endsWith('\n'))out+=' ';out+=it.str;lastY=it.transform[5];}out+='\n';}
+    return out;
+  }
+  throw new Error('type');
+}
+async function addFiles(files){
+  if(!files.length)return;
+  busy(true,`Reading ${files.length} CV${files.length>1?'s':''}…`);
+  let bad=0;
+  for(const f of files){try{const t=(await readFile(f)).replace(/\r/g,'').replace(/\n{3,}/g,'\n\n').trim();if(t.length<30)throw 0;S.cvs.push({id:++uid,text:t,file:f.name,name:candName(t,f.name)});}catch(e){bad++;}}
+  busy(false);renderCVs();
+  if(bad)toast(`${bad} file${bad>1?'s':''} couldn't be read. Try pasting the text instead.`);
+}
+
+/* ---------- render ---------- */
+const VL={interview:'Invite to interview',consider:'Keep warm',decline:'Kind decline'};
+const VS={interview:'Strong match. Worth a conversation.',consider:'Close, with room to grow. Hold while you see the rest.',decline:'Not a fit this time. Leave the door open.'};
+const label = (r,i) => S.fair&&!S.revealed.has(r.id)?`Candidate ${String.fromCharCode(65+i)}`:r.name;
+
+function go(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
+  if(v==='results')renderResults();
+  if(v==='home')renderHome();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function renderTpls(){$('#tpls').innerHTML=TPL.map((t,i)=>`<button class="chip" data-tpl="${i}">${esc(t.k)}</button>`).join('');}
+function renderCVs(){
+  const cols=['var(--orange)','var(--yellow)','var(--green)','var(--blue)','var(--pink)','var(--lilac)'];
+  $('#cvList').innerHTML=S.cvs.map((c,i)=>`<div class="cvrow"><span class="ic" style="background:${cols[i%6]}">${esc((c.file||'TXT').split('.').pop().toUpperCase().slice(0,4))}</span><div><b>${esc(c.name)}</b><small>${c.text.length.toLocaleString()} characters${c.file?' · '+esc(c.file):''}</small></div><button class="x" data-rm="${c.id}" aria-label="Remove">×</button></div>`).join('');
+  $('#runBtn').textContent=S.cvs.length?`Screen ${S.cvs.length} candidate${S.cvs.length>1?'s':''}`:'Screen candidates';
+}
+function renderHome(){
+  const n=S.results.filter(r=>!S.done.has(r.id)).length;
+  $('#resume').hidden=!S.results.length;
+  if(S.results.length){$('#resumeT').textContent=`${n} repl${n===1?'y':'ies'} waiting`;$('#resumeS').textContent=S.role||'Your latest screening';}
+}
+function renderBadge(){const n=S.results.filter(r=>!S.done.has(r.id)).length;const b=$('#badge');b.hidden=!n;b.textContent=n;}
+function renderResults(){
+  if(!S.results.length){$('#rTitle').textContent='No results yet';$('#rSub').textContent='';$('#rSum').innerHTML='';$('#rList').innerHTML=`<div class="empty"><p>Screen a few CVs and they'll show up here, best fit first.</p><button class="btn k" data-act="demo">Try the demo</button></div>`;return;}
+  $('#rTitle').textContent=S.role||'Your candidates';
+  const left=S.results.filter(r=>!S.done.has(r.id)).length;
+  $('#rSub').textContent=`${S.results.length} screened · ${left} still to reply`;
+  const c=k=>S.results.filter(r=>r.verdict===k).length;
+  $('#rSum').innerHTML=`<span class="pill" style="background:var(--green)">${c('interview')} interview</span><span class="pill" style="background:var(--yellow)">${c('consider')} keep warm</span><span class="pill" style="background:var(--blue)">${c('decline')} kind decline</span>`;
+  $('#rList').innerHTML=S.results.map((r,i)=>{
+    const top=r.rows.filter(x=>x.st==='met').length;
+    return `<button class="rc v-${r.verdict}${S.done.has(r.id)?' done':''}" data-open="${r.id}">
+      <h3>${esc(label(r,i))}</h3><div class="sc">${r.score}</div>
+      <div class="meta">${VL[r.verdict]} · meets ${top} of ${r.rows.length}</div>
+      <div class="tags">${S.done.has(r.id)?'<span class="tg k">Replied</span>':''}${r.hidden?'<span class="tg k">Hidden potential</span>':''}${r.pot.slice(0,2).map(p=>`<span class="tg">${esc(p.split(',')[0])}</span>`).join('')}</div>
+    </button>`}).join('');
+}
+function openSheet(id){
+  const i=S.results.findIndex(r=>r.id===id), r=S.results[i]; if(!r)return;
+  S.open=id; S.revealed.add(id);
+  const tone=S.toneOf[id]||S.tone, lang=S.langOf[id]||r.lang, key=`${id}-${tone}-${lang}`;
+  const ic={met:'✓',partial:'~',gap:'!'}, col={interview:'var(--green)',consider:'var(--yellow)',decline:'var(--blue)'}[r.verdict];
+  $('#sheet').innerHTML=`
+  <div class="shead" style="background:${col}"><div class="grab"></div>
+    <div class="row"><h2>${esc(r.name)}</h2><button class="close" data-act="close" aria-label="Close">×</button></div>
+    <div class="verdict"><div class="bigsc">${r.score}</div><div><b>${VL[r.verdict]}${r.hidden?' · hidden potential':''}</b><span>${VS[r.verdict]}</span></div></div>
+  </div>
+  <div class="sbody">
+    <div class="sec"><h2 style="font-size:20px;margin-bottom:8px">Against the JD</h2>
+      ${r.rows.map(x=>`<div class="req ${x.st}"><span class="ic">${ic[x.st]}</span><div><b>${esc(x.q)}</b><p>${x.ev?esc(x.ev):'Not clearly mentioned in the CV'}</p></div></div>`).join('')}
+    </div>
+    ${r.pot.length?`<div class="sec"><h2 style="font-size:20px;margin-bottom:10px">Potential we spotted</h2><ul class="pot">${r.pot.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>`:''}
+    <div class="sec"><h2 style="font-size:20px;margin-bottom:12px">Reply</h2>
+      <div class="seg" data-seg="tone">${['warm','friendly','formal'].map(t=>`<button data-tone="${t}" class="${t===tone?'on':''}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div>
+      <div class="seg" data-seg="lang"><button data-lang="en" class="${lang==='en'?'on':''}">English</button><button data-lang="zh" class="${lang==='zh'?'on':''}">中文</button></div>
+      <textarea id="reply" aria-label="Reply draft"></textarea>
+      <div class="acts"><button class="btn k" data-act="copy">Copy reply</button><button class="btn o" data-act="redraft">Redraft</button>
+      <button class="btn y full" data-act="done">${S.done.has(id)?'Replied ✓ · tap to undo':'Mark as replied'}</button></div>
+      ${r.email?`<div class="mail">Candidate email: <b>${esc(r.email)}</b> · <a href="mailto:${esc(r.email)}?body=${encodeURIComponent(S.edits[key]??draft(r,tone,lang))}">Open in mail app</a></div>`:''}
+    </div>
+  </div>`;
+  $('#reply').value=S.edits[key]??draft(r,tone,lang);
+  $('#scrim').classList.add('on');$('#sheet').classList.add('on');$('#sheet').scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeSheet(){$('#scrim').classList.remove('on');$('#sheet').classList.remove('on');document.body.style.overflow='';S.open=null;renderResults();}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2600);}
+function busy(on,t){$('#busy').classList.toggle('on',on);if(t)$('#busyT').textContent=t;}
+
+function run(){
+  const jd=$('#jdIn').value.trim(); S.role=$('#roleIn').value.trim();
+  const reqs=reqLines(jd);
+  if(reqs.length<2){toast('Add at least two requirements to the JD');$('#jdIn').focus();return;}
+  if(!S.cvs.length){toast('Add at least one CV');return;}
+  busy(true,'Matching candidates…');
+  setTimeout(()=>{
+    S.results=S.cvs.map(c=>({id:c.id,name:c.name,email:emailIn(c.text),lang:langOf(c.text),...screen(c.text,reqs)})).sort((a,b)=>b.score-a.score);
+    S.edits={};S.done=new Set();S.revealed=new Set();S.toneOf={};S.langOf={};
+    busy(false);renderBadge();go('results');toast('Tap a candidate to see the match and the reply');
+  },650);
+}
+function demo(){
+  $('#roleIn').value=TPL[0].role;$('#jdIn').value=TPL[0].jd;
+  S.cvs=DEMO.map(t=>({id:++uid,text:t,file:'',name:candName(t)}));
+  if(!$('#sName').value)$('#sName').value='Mei Lin';
+  if(!$('#sCo').value)$('#sCo').value='Talent Team, Northwind Studio';
+  renderCVs();run();
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-go],[data-act],[data-tpl],[data-rm],[data-open],[data-tone],[data-lang],[data-dt],#swFair');if(!b)return;
+  if(b.dataset.go){closeSheet();go(b.dataset.go);return;}
+  if(b.dataset.tpl){const t=TPL[+b.dataset.tpl];$('#roleIn').value=t.role;$('#jdIn').value=t.jd;document.querySelectorAll('#tpls .chip').forEach(c=>c.classList.toggle('on',c===b));return;}
+  if(b.dataset.rm){S.cvs=S.cvs.filter(c=>c.id!==+b.dataset.rm);renderCVs();return;}
+  if(b.dataset.open){openSheet(+b.dataset.open);return;}
+  if(b.dataset.tone){S.toneOf[S.open]=b.dataset.tone;openSheetKeep();return;}
+  if(b.dataset.lang){S.langOf[S.open]=b.dataset.lang;openSheetKeep();return;}
+  if(b.dataset.dt){S.tone=b.dataset.dt;store.set('w_tone',S.tone);document.querySelectorAll('#defTone button').forEach(x=>x.classList.toggle('on',x===b));return;}
+  if(b.id==='swFair'){S.fair=!S.fair;b.classList.toggle('on',S.fair);store.set('w_fair',S.fair?'1':'0');return;}
+  const a=b.dataset.act;
+  if(a==='demo'){demo();}
+  else if(a==='run'){run();}
+  else if(a==='close'){closeSheet();}
+  else if(a==='paste'){const p=$('#pasteBox');p.hidden=!p.hidden;if(!p.hidden)$('#pasteIn').focus();}
+  else if(a==='addPaste'){const t=$('#pasteIn').value.trim();if(t.length<30){toast('That CV looks a bit short');return;}S.cvs.push({id:++uid,text:t,file:'',name:candName(t)});$('#pasteIn').value='';$('#pasteBox').hidden=true;renderCVs();toast('CV added');}
+  else if(a==='copy'){const t=$('#reply').value;try{await navigator.clipboard.writeText(t);toast('Reply copied. Paste it into your email or chat.');}catch(err){$('#reply').select();toast('Select all and copy the text above');}}
+  else if(a==='redraft'){const r=S.results.find(x=>x.id===S.open);const tone=S.toneOf[S.open]||S.tone,lang=S.langOf[S.open]||r.lang;delete S.edits[`${S.open}-${tone}-${lang}`];$('#reply').value=draft(r,tone,lang);}
+  else if(a==='done'){const id=S.open;S.done.has(id)?S.done.delete(id):S.done.add(id);renderBadge();
+    if(S.done.has(id)){const next=S.results.find(r=>!S.done.has(r.id));closeSheet();if(next){toast('Nice. Here\'s the next one');setTimeout(()=>openSheet(next.id),350);}else toast('All candidates replied to');}else openSheetKeep();}
+});
+function openSheetKeep(){const sc=$('#sheet').scrollTop;openSheet(S.open);$('#sheet').scrollTop=sc;}
+document.addEventListener('input',e=>{
+  if(e.target.id==='reply'){const r=S.results.find(x=>x.id===S.open);const tone=S.toneOf[S.open]||S.tone,lang=S.langOf[S.open]||r.lang;S.edits[`${S.open}-${tone}-${lang}`]=e.target.value;}
+  if(e.target.id==='sName')store.set('w_name',e.target.value);
+  if(e.target.id==='sCo')store.set('w_co',e.target.value);
+});
+$('#fileIn').addEventListener('change',e=>{addFiles([...e.target.files]);e.target.value='';});
+const drop=$('#drop');
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over');}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over');}));
+drop.addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&S.open)closeSheet();});
+/* swipe down to close */
+let y0=null;$('#sheet').addEventListener('touchstart',e=>{y0=$('#sheet').scrollTop<=0?e.touches[0].clientY:null;},{passive:true});
+$('#sheet').addEventListener('touchend',e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>110)closeSheet();y0=null;});
+
+/* ---------- init ---------- */
+$('#sName').value=store.get('w_name')||'';$('#sCo').value=store.get('w_co')||'';
+const st=store.get('w_tone');if(st){S.tone=st;document.querySelectorAll('#defTone button').forEach(x=>x.classList.toggle('on',x.dataset.dt===st));}
+if(store.get('w_fair')==='0'){S.fair=false;$('#swFair').classList.remove('on');}
+renderTpls();renderCVs();renderHome();
+</script>
+</body>
+</html>

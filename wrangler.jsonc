@@ -1,0 +1,8 @@
+{
+  // Warmly website: a single static page served from ./public. No server code, no storage.
+  "name": "warmly",
+  "compatibility_date": "2026-11-16",
+  "assets": {
+    "directory": "./public"
+  }
+}
